@@ -20,6 +20,8 @@ public class myhttpservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("第"+(++Postn)+"个post请求");
+        System.out.println("name="+req.getParameter("usernmae"));
+        System.out.println("pwd"+req.getParameter("password"));
         super.doPost(req, resp);
     }
 }
