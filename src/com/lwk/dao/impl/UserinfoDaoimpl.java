@@ -1,6 +1,7 @@
 package com.lwk.dao.impl;
 
 import com.lwk.dao.UserinfoDao;
+import com.lwk.exception.DaoException;
 import com.lwk.exception.IdIsNullException;
 import com.lwk.model.Userinfo;
 import com.lwk.util.SQLUtil;
@@ -41,7 +42,8 @@ public class UserinfoDaoimpl implements UserinfoDao {
                 userinfo.setDescription(rs.getString("description"));
             }
         }catch (Exception e){
-
+            //抛出Dao的运行时异常
+            throw new DaoException(e);
         }
         return userinfo;
     }
