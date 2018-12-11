@@ -16,6 +16,15 @@ public interface UserinfoDao {
     public Userinfo findUserByName(String name);
 
     /**
+     * 检查用户登录
+     *
+     * @param name
+     * @param pwd
+     * return
+     */
+    public Userinfo checkUser(String name,String pwd);
+
+    /**
      * 根据id查询单个用户
      *
      * @param id
