@@ -50,7 +50,8 @@ public class SQLUtil {
 
 
         try {
-            conn = JdbcUtil.getConnection();
+//            conn = JdbcUtil.getConnection();
+            conn = C3P0Util.getConnection();
             ps = conn.prepareStatement(sql);
 
             // 给?赋值
@@ -87,7 +88,8 @@ public class SQLUtil {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
-            JdbcUtil.release(rs, ps, conn);//立即关闭
+//            JdbcUtil.release(rs, ps, conn);//立即关闭
+            C3P0Util.release(rs,ps,conn);
             return arrayList;
         }
     }
