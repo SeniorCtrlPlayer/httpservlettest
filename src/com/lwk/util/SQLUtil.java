@@ -23,11 +23,17 @@ public class SQLUtil {
                 }
             }
             rs = ps.executeQuery();
+//            while(rs.next()){
+//                System.out.println(rs.getString("name"));
+//                System.out.println(rs.getString("pwd"));
+//            }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             JdbcUtil.release(null, ps, conn);
+            System.out.println("数据库连接已释放");
             return rs;
+//            返回的rs无法使用
         }
     }
 }
