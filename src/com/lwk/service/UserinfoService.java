@@ -66,4 +66,12 @@ public interface UserinfoService {
      */
     public int updateUserById(Userinfo userinfo)throws IdIsNullException;
 
+    /**
+     * 登录验证
+     *
+     *@param name
+     *@param pwd
+     *@return
+    */
+    Userinfo findUserByNameAndPwd(String name, String pwd);
 }
