@@ -18,7 +18,7 @@ public class UserinfoDaoimpl implements UserinfoDao {
         Userinfo userinfo = null;
 
         try{
-            String sql = "select * from userinfo where name=?";
+            String sql = "select * from users where name=?";
 
             String[] params = { name };
 

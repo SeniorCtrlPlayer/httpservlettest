@@ -3,6 +3,8 @@ package com.lwk.util;
 import java.sql.*;
 import java.util.ArrayList;
 
+import com.lwk.util.C3P0Util.*;
+
 public class SQLUtil {
 
     private static Connection conn = null;
@@ -19,7 +21,7 @@ public class SQLUtil {
 
     public static ResultSet executeQuery(String sql, String[] params) {
         try {
-            conn = JdbcUtil.getConnection();
+            conn = C3P0Util.getConnection();
             ps = conn.prepareStatement(sql);
 
             if (params != null && params.length > 0) {
@@ -48,10 +50,18 @@ public class SQLUtil {
 
         ArrayList<Object[]> arrayList=null;
 
+        System.out.println("开始尝试数据库连接");
 
         try {
 //            conn = JdbcUtil.getConnection();
             conn = C3P0Util.getConnection();
+
+            if(conn!=null){
+                System.out.println("成功拿到数据库连接");
+            }else{
+                System.out.println("未从C3P0拿到数据库连接");
+            }
+
             ps = conn.prepareStatement(sql);
 
             // 给?赋值
@@ -88,7 +98,8 @@ public class SQLUtil {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
-//            JdbcUtil.release(rs, ps, conn);//立即关闭
+//            System.out.println("测试");
+//            JdbcUtil.release(rs, ps, conn);//立即关闭s
             C3P0Util.release(rs,ps,conn);
             return arrayList;
         }

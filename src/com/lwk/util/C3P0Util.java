@@ -11,6 +11,7 @@ public class C3P0Util {
     private static ComboPooledDataSource cpds = new ComboPooledDataSource();
 
     public static Connection getConnection(){
+        System.out.println("C3P0收到连接请求");
         Connection conn = null;
 
         try {

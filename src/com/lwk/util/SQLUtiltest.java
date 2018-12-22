@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class SQLUtiltest {
     public static void main(String[] args) {
         try{
-            String sql = "select * from userinfo where name=? and pwd=?";
+            String sql = "select * from users where name=? and pwd=?";
 
-            String[] params = { "123","123" };
+            String[] params = { "admin","admin" };
 
             //dao中不在含有数据库连接部分
 //            ResultSet rs = SQLUtil.executeQuery(sql, params);
