@@ -32,7 +32,8 @@ public class UserinfoServiceimpl implements UserinfoService {
 
     @Override
     public int addUser(Userinfo userinfo) {
-        return 0;
+
+        return userDao.addUser(userinfo);
     }
 
     @Override

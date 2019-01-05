@@ -75,13 +75,15 @@ public class SQLUtil {
 
             //封装arrayList
 
-            ResultSetMetaData rsmd=rs.getMetaData();//元数据
+            ResultSetMetaData rsmd=rs.getMetaData();//元数据，即使查询语句为空也能拿到元数据，即表结构
             int columnCount=rsmd.getColumnCount();
             System.out.println("columnCount is: "+columnCount);
 
             arrayList=new ArrayList<Object[]>();
 
+            //rs.next()是空的，但是rs本身不为null
             while(rs.next()){
+                System.out.println("rs不为空");
                 //封装Object[]
                 Object[] objects=new Object[columnCount];
                 for (int i = 0; i < columnCount; i++) {
@@ -102,6 +104,25 @@ public class SQLUtil {
 //            JdbcUtil.release(rs, ps, conn);//立即关闭s
             C3P0Util.release(rs,ps,conn);
             return arrayList;
+        }
+    }
+
+    public static int executeUpdate(String sql,Object[] params){
+        int res = 0;
+        try{
+            conn = C3P0Util.getConnection();
+            ps = conn.prepareStatement(sql);
+
+            if(params != null && params.length>0){
+                for(int i=0;i<params.length;i++){
+                    ps.setObject(i+1,params[i]);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            C3P0Util.release(null,ps,conn);
+            return res;
         }
     }
 }

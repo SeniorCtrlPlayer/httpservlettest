@@ -134,7 +134,17 @@ public class UserinfoDaoimpl implements UserinfoDao {
 
     @Override
     public int addUser(Userinfo userinfo) {
-        return 0;
+
+        String sql = "insert into 'userinfo'('name','nickName','pwd','gender','birthday','hobby','tel','email','grade','description')values(?,?,?,?,?,?,?,?,?,?);";
+        Object[] params = {userinfo.getName(),userinfo.getNickName(),userinfo.getPwd(),userinfo.getGender(),userinfo.getBirthday(),userinfo.getHobby(),userinfo.getTel(),userinfo.getEmail(),userinfo.getGrade(),userinfo.getDescription()};
+        int res = 0;
+        try {
+            res = SQLUtil.executeUpdate(sql,params);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return res;
     }
 
     @Override

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 
 public class LoginServlet extends HttpServlet {
 
@@ -45,6 +46,47 @@ public class LoginServlet extends HttpServlet {
 //                System.out.println("拒绝登录");
 //            }
 //        }
+    }
+
+    private void addUser(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+        String name = request.getParameter("name");
+        String nickName = request.getParameter("nickName");
+        String pwd = request.getParameter("pwd");
+        String gender = request.getParameter("gender");
+        String birthday = request.getParameter("birthday");
+        String[] hobbies = request.getParameterValues("hobby");
+        String tel = request.getParameter("tel");
+        String email = request.getParameter("email");
+        String grade = request.getParameter("grade");
+        String description = request.getParameter("description");
+
+        String hobby = "";
+        if (hobbies != null && hobbies.length > 0) {
+            int i = 0;
+            for (; i < hobbies.length - 1; i++) {
+                hobby += hobbies[i] + ",";
+            }
+            hobby += hobbies[i];
+
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Userinfo userinfo = null;
+        try {
+            userinfo = new Userinfo(name, nickName, pwd, gender,
+                    sdf.parse(birthday), hobby, tel, email,
+                    Integer.parseInt(grade), description);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        if (userinfo != null) {
+
+            int res = userinfoService.addUser(userinfo);
+            System.out.println("res=" + res);
+        }
     }
 
     @Override

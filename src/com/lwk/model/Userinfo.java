@@ -5,6 +5,19 @@ import java.util.Date;
 
 public class Userinfo implements Serializable {
 
+    public Userinfo(String name, String nickName, String pwd, String gender, Date birthday, String hobby, String tel, String email, int grade, String description) {
+        this.name = name;
+        this.nickName = nickName;
+        this.pwd = pwd;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.hobby = hobby;
+        this.tel = tel;
+        this.email = email;
+        this.grade = grade;
+        this.description = description;
+    }
+
     /**
      * create table users(
      id int auto_increment primary key,
@@ -24,6 +37,11 @@ public class Userinfo implements Serializable {
 
     private Integer id;
     private String name;
+
+    public Userinfo() {
+        super();
+    }
+
     private String nickName;
     private String pwd;
     private String gender;
